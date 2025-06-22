@@ -4,7 +4,11 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "mediapipe>=0.10.21",
+    "numpy>=1.26.4",
+    "opencv-python>=4.11.0.86",
+]
 
 [dependency-groups]
 dev = [
@@ -16,7 +20,7 @@ dev = [
     "pydocstyle>=6.3.0",
     "pylint>=3.3.7",
     "pytest>=8.4.0",
-    "ruff[format]>=0.11.13",
+    "ruff>=0.11.13",
 ]
 
 [tool.black]
@@ -24,16 +28,33 @@ line-length = 79
 
 [tool.ruff]
 line-length = 79
-target-version = "py311"
-ignore = ["E501"]
+
+[tool.ruff.lint]
+ignore = ["E203"]
+select = ["E", "F", "W"]
 
 [tool.mypy]
 python_version = "3.11"
 
 [tool.pylint]
 max-line-length = 79
-disable = ["C0111", "C0103"]
+disable = ["C0111", "C0103", "W1514", "R0914", "W0718"]
+extension-pkg-allow-list = ["cv2"]
+generated-members = "cv2.*"
+
+[tool.pylint.messages_control]
+disable = [
+    "c-extension-no-member"
+]
 
 [tool.flake8]
-ignore = ["E501"]
+ignore = ["E501", "W503"]
 max-line-length = 79
+extend-ignore = ["W503"]
+
+[[tool.mypy.overrides]]
+module = [
+    "mediapipe.*",
+    "cv2.*"
+]
+ignore_missing_imports = true

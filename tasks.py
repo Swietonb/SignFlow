@@ -24,7 +24,7 @@ def check(c: Context) -> None:
     print("Checking code quality with pylint...")
     run(c, "pylint src tests")
     print("Checking logical errors and doc styling with flake8...")
-    run(c, "flake8 --ignore=E501 src tests")
+    run(c, "flake8 --ignore=E501,W503 src tests")
     print("Checking doc styling based on PEP 257 with pydocstyle...")
     run(c, "pydocstyle src tests")
     print("All checks passed!")

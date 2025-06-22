@@ -9,3 +9,8 @@ wheels/
 # Virtual environments
 .venv
 .idea
+/vid/
+/sk.py
+/sk.txt
+/output/
+/video_paths.py
